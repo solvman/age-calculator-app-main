@@ -2,7 +2,7 @@ function Button() {
   return (
     <button
       type="submit"
-      className="relative flex h-16 w-16 items-center justify-center rounded-full bg-purple"
+      className="relative flex h-16 w-16 items-center justify-center rounded-full bg-purple md:h-24 md:w-24"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
