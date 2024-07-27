@@ -15,6 +15,7 @@ const config: Config = {
       "light-grey": "hsl(0, 0%, 86%)",
       "smokey-grey": "hsl(0, 1%, 44%)",
       "off-black": "hsl(0, 0%, 8%)",
+      line: "hsl(0, 0%, 86%)",
     },
     fontWeight: {
       normal: "400",
@@ -27,6 +28,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };
 export default config;
