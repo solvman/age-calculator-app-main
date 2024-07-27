@@ -31,9 +31,9 @@ export default function Home() {
     },
   });
 
-  const [days, setDays] = useState("- -");
-  const [months, setMonths] = useState("- -");
-  const [years, setYears] = useState("- -");
+  const [days, setDays] = useState("--");
+  const [months, setMonths] = useState("--");
+  const [years, setYears] = useState("--");
 
   useEffect(() => {
     if (!isDirty) {
@@ -55,7 +55,7 @@ export default function Home() {
   }
 
   return (
-    <main className="h-full min-h-[680px] px-4 pt-20 sm:px-6 md:flex md:items-center md:justify-center md:p-0">
+    <main className="h-full min-h-[680px] min-w-[375px] px-4 pt-20 sm:px-6 md:flex md:items-center md:justify-center md:p-0">
       <h1 className="sr-only">Age calculator</h1>
       <article className="flex max-w-3xl flex-col gap-8 rounded-3xl rounded-br-[100px] bg-white px-6 py-12 shadow-sm md:gap-0 md:rounded-br-[200px] md:p-14">
         <h2 className="sr-only">Feel the form to calculate your age</h2>
