@@ -92,8 +92,8 @@ export default function Home() {
               })}
             />
           </div>
-          <div className="border-red border-line relative flex items-center justify-center md:justify-end">
-            <hr className="border-line absolute left-0 top-1/2 w-full" />
+          <div className="border-red relative flex items-center justify-center border-light-grey md:justify-end">
+            <hr className="absolute left-0 top-1/2 w-full border-light-grey" />
             <Button disabled={isSubmitting} />
           </div>
         </form>
