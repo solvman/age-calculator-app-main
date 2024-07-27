@@ -1,13 +1,14 @@
+import { cn } from "@/utils";
 import { forwardRef, InputHTMLAttributes, Ref, useId } from "react";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "className"> & {
   label: string;
   error?: string;
 };
 
 const Input = forwardRef(function Input(
-  { label, error }: InputProps,
-  ref?: Ref<HTMLInputElement>,
+  { label, error, ...rest }: InputProps,
+  inputRef?: Ref<HTMLInputElement>,
 ) {
   const id = useId();
 
@@ -15,18 +16,26 @@ const Input = forwardRef(function Input(
     <div className="relative flex min-w-[30px] flex-1 flex-col gap-1 md:gap-2">
       <label
         htmlFor={id}
-        className="text-xs font-bold uppercase tracking-[3px] text-smokey-grey md:text-sm"
+        className={cn(
+          "text-xs font-bold uppercase tracking-[3px] text-smokey-grey md:text-sm",
+          error && "text-light-red",
+        )}
       >
         {label}
       </label>
       <input
         type="number"
         id={id}
-        className="border-line focus:border-transparent rounded-lg border px-4 py-3 text-xl font-bold tracking-[0.2px] text-off-black focus:border-purple focus:outline-none focus:ring-0 md:px-6 md:py-3 md:text-[32px] md:tracking-[0.32px]"
+        ref={inputRef}
+        {...rest}
+        className={cn(
+          "border-line focus:border-transparent rounded-lg border px-4 py-3 text-xl font-bold tracking-[0.2px] text-off-black focus:border-purple focus:outline-none focus:ring-0 md:px-6 md:py-3 md:text-[32px] md:tracking-[0.32px]",
+          error && "border-light-red focus:border-light-red",
+        )}
       />
       <div className="h-[18px] md:h-[21px]">
         {error && (
-          <em className="text-xsm font-normal italic text-light-red md:text-sm">
+          <em className="block text-xs font-normal italic leading-tight text-light-red md:text-sm">
             {error}
           </em>
         )}

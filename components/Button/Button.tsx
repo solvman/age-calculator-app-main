@@ -1,6 +1,11 @@
-function Button() {
+type ButtonProps = {
+  disabled?: boolean;
+};
+
+function Button({ disabled }: ButtonProps) {
   return (
     <button
+      disabled={disabled}
       type="submit"
       className="relative flex h-16 w-16 items-center justify-center rounded-full bg-purple md:h-24 md:w-24"
     >
