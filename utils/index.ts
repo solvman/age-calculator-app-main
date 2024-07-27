@@ -1,2 +1,2 @@
-import { cn } from "./utils";
-export { cn };
+import { cn, getAgeDetails } from "./utils";
+export { cn, getAgeDetails };

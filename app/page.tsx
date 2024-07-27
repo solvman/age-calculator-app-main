@@ -1,10 +1,14 @@
 "use client";
 
-import Button from "@/components/Button";
-import Input from "../components/Input";
-import ResultLabel from "@/components/ResultLabel";
-import { set, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import dayjs from "dayjs";
+
+import Button from "@/components/Button";
+import Input from "@/components/Input";
+import ResultLabel from "@/components/ResultLabel";
+
+import { getAgeDetails } from "@/utils";
 
 type FormData = {
   day: string;
@@ -38,14 +42,14 @@ export default function Home() {
   }, [isDirty, setFocus]);
 
   function onSubmit(data: FormData) {
-    const birthday = Date.parse(`${data.year}-${data.month}-${data.day}`);
-    const now = Date.now();
-    const diff = now - birthday;
-    const age = new Date(diff);
-    console.log(age);
-    setDays(data.day);
-    setMonths(data.month);
-    setYears(data.year);
+    const birthday = dayjs(`${data.year}-${data.month}-${data.day}`);
+    const now = dayjs();
+    const { years, months, days } = getAgeDetails(birthday, now);
+
+    setDays(days.toString());
+    setMonths(months.toString());
+    setYears(years.toString());
+
     reset();
     setFocus("day");
   }
@@ -60,17 +64,32 @@ export default function Home() {
             <Input
               label="Day"
               error={errors.day?.message}
-              {...register("day")}
+              {...register("day", {
+                required: "Day is required",
+                min: { value: 1, message: "Must be valid day" },
+                max: { value: 31, message: "Must be valid day" },
+              })}
             />
             <Input
               label="Month"
               error={errors.month?.message}
-              {...register("month")}
+              {...register("month", {
+                required: "Month is required",
+                min: { value: 1, message: "Must be valid month" },
+                max: { value: 12, message: "Must be valid month" },
+              })}
             />
             <Input
               label="Year"
               error={errors.year?.message}
-              {...register("year")}
+              {...register("year", {
+                required: "Year is required",
+                min: { value: 1, message: "Year must be greater than 0" },
+                max: {
+                  value: dayjs().year() - 1,
+                  message: "Must be in the past",
+                },
+              })}
             />
           </div>
           <div className="border-red border-line relative flex items-center justify-center md:justify-end">
