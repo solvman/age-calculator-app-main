@@ -25,6 +25,7 @@ function Button({ disabled }: ButtonProps) {
         },
       }}
       disabled={disabled}
+      aria-label="calculate"
       type="submit"
       className="relative flex h-16 w-16 items-center justify-center self-center rounded-full bg-purple shadow-sm focus-visible:outline-dotted focus-visible:outline-[3px] focus-visible:outline-purple md:h-24 md:w-24 md:self-end"
     >
