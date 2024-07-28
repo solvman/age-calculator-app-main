@@ -27,6 +27,7 @@ const Input = forwardRef(function Input(
         type="number"
         id={id}
         ref={inputRef}
+        aria-labelledby={id}
         {...rest}
         className={cn(
           "focus:border-transparent rounded-lg border border-light-grey px-4 py-3 text-xl font-bold tracking-[0.2px] text-off-black shadow-sm focus:border-purple focus:outline-none focus:ring-0 md:px-6 md:py-3 md:text-[32px] md:tracking-[0.32px]",

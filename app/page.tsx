@@ -89,10 +89,11 @@ export default function Home() {
                   value: dayjs().year() - 1,
                   message: "Must be in the past",
                 },
+                minLength: { value: 3, message: "Year must be 4 digits" },
               })}
             />
           </div>
-          <div className="border-red relative flex items-center justify-center border-light-grey md:justify-end">
+          <div className="border-red relative flex flex-col justify-center border-light-grey">
             <hr className="absolute left-0 top-1/2 w-full border-light-grey" />
             <Button disabled={isSubmitting} />
           </div>
