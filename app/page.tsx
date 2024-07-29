@@ -26,7 +26,7 @@ export default function Home() {
     reset,
     trigger,
   } = useForm({
-    mode: "onSubmit",
+    mode: "onChange",
     reValidateMode: "onChange",
     defaultValues: {
       day: "",
