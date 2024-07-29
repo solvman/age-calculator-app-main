@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -24,6 +25,8 @@ export default function Home() {
     setFocus,
     reset,
   } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onChange",
     defaultValues: {
       day: "",
       month: "",
@@ -42,7 +45,9 @@ export default function Home() {
   }, [isDirty, setFocus]);
 
   function onSubmit(data: FormData) {
-    const birthday = dayjs(`${data.year}-${data.month}-${data.day}`);
+    const submitedDate = `${data.year}-${data.month}-${data.day}`;
+
+    const birthday = dayjs(submitedDate);
     const now = dayjs();
     const { years, months, days } = getAgeDetails(birthday, now);
 
@@ -68,6 +73,20 @@ export default function Home() {
                 required: "Day is required",
                 min: { value: 1, message: "Must be valid day" },
                 max: { value: 31, message: "Must be valid day" },
+                validate: (day, { year, month }) => {
+                  if (!day || !year || !month) return true;
+                  dayjs.extend(customParseFormat);
+                  const formatedDay = day.padStart(2, "0");
+                  const formatedMonth = month.padStart(2, "0");
+                  const currentDate = `${year}-${formatedMonth}-${formatedDay}`;
+                  const isValidDate = dayjs(
+                    currentDate,
+                    "YYYY-MM-DD",
+                    true,
+                  ).isValid();
+                  console.log(currentDate, isValidDate);
+                  return isValidDate || "Invalid date";
+                },
               })}
             />
             <Input
