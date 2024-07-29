@@ -31,7 +31,7 @@ const Input = forwardRef(function Input(
         aria-errormessage={`error-${id}`}
         {...rest}
         className={cn(
-          "focus:border-transparent rounded-lg border border-light-grey px-4 py-3 text-xl font-bold tracking-[0.2px] text-off-black shadow-sm focus:border-purple focus:outline-none focus:ring-0 md:px-6 md:py-3 md:text-[32px] md:tracking-[0.32px]",
+          "focus:border-transparent rounded-lg border border-light-grey px-4 py-3 text-xl font-bold tracking-[0.2px] text-off-black shadow-sm placeholder:opacity-50 focus:border-purple focus:outline-none focus:ring-0 md:px-6 md:py-3 md:text-[32px] md:tracking-[0.32px]",
           error && "border-light-red focus:border-light-red",
         )}
       />

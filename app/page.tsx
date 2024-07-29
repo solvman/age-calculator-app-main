@@ -68,6 +68,7 @@ export default function Home() {
         <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-row gap-4 md:gap-8">
             <Input
+              placeholder="DD"
               label="Day"
               aria-invalid={errors.day ? "true" : "false"}
               error={errors.day?.message}
@@ -92,6 +93,7 @@ export default function Home() {
               })}
             />
             <Input
+              placeholder="MM"
               label="Month"
               aria-invalid={errors.month ? "true" : "false"}
               error={errors.month?.message}
@@ -106,6 +108,7 @@ export default function Home() {
               })}
             />
             <Input
+              placeholder="YYYY"
               label="Year"
               aria-invalid={errors.year ? "true" : "false"}
               error={errors.year?.message}
