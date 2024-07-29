@@ -70,15 +70,14 @@ export default function Home() {
               label="Day"
               error={errors.day?.message}
               {...register("day", {
+                setValueAs: (value) => value.padStart(2, "0"),
                 required: "Day is required",
                 min: { value: 1, message: "Must be valid day" },
                 max: { value: 31, message: "Must be valid day" },
                 validate: (day, { year, month }) => {
                   if (!day || !year || !month) return true;
                   dayjs.extend(customParseFormat);
-                  const formatedDay = day.padStart(2, "0");
-                  const formatedMonth = month.padStart(2, "0");
-                  const currentDate = `${year}-${formatedMonth}-${formatedDay}`;
+                  const currentDate = `${year}-${month}-${day}`;
                   const isValidDate = dayjs(
                     currentDate,
                     "YYYY-MM-DD",
@@ -93,6 +92,7 @@ export default function Home() {
               label="Month"
               error={errors.month?.message}
               {...register("month", {
+                setValueAs: (value) => value.padStart(2, "0"),
                 required: "Month is required",
                 min: { value: 1, message: "Must be valid month" },
                 max: { value: 12, message: "Must be valid month" },
@@ -102,13 +102,13 @@ export default function Home() {
               label="Year"
               error={errors.year?.message}
               {...register("year", {
+                setValueAs: (value) => value.padStart(4, "0"),
                 required: "Year is required",
-                min: { value: 1, message: "Year must be greater than 0" },
+                min: { value: 100, message: "Year must be 100 or greater" },
                 max: {
                   value: dayjs().year() - 1,
                   message: "Must be in the past",
                 },
-                minLength: { value: 3, message: "Year must be 4 digits" },
               })}
             />
           </div>
