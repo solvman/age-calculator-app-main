@@ -69,6 +69,7 @@ export default function Home() {
           <div className="flex flex-row gap-4 md:gap-8">
             <Input
               label="Day"
+              aria-invalid={errors.day ? "true" : "false"}
               error={errors.day?.message}
               {...register("day", {
                 setValueAs: (value) => value.padStart(2, "0"),
@@ -92,6 +93,7 @@ export default function Home() {
             />
             <Input
               label="Month"
+              aria-invalid={errors.month ? "true" : "false"}
               error={errors.month?.message}
               {...register("month", {
                 setValueAs: (value) => value.padStart(2, "0"),
@@ -105,6 +107,7 @@ export default function Home() {
             />
             <Input
               label="Year"
+              aria-invalid={errors.year ? "true" : "false"}
               error={errors.year?.message}
               {...register("year", {
                 setValueAs: (value) => value.padStart(4, "0"),
