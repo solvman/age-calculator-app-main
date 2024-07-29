@@ -24,6 +24,7 @@ export default function Home() {
     formState: { isSubmitting, isDirty, errors },
     setFocus,
     reset,
+    trigger,
   } = useForm({
     mode: "onSubmit",
     reValidateMode: "onChange",
@@ -76,6 +77,7 @@ export default function Home() {
                 max: { value: 31, message: "Must be valid day" },
                 validate: (day, { year, month }) => {
                   if (!day || !year || !month) return true;
+                  if (year === "0000" || month === "00") return true;
                   dayjs.extend(customParseFormat);
                   const currentDate = `${year}-${month}-${day}`;
                   const isValidDate = dayjs(
@@ -93,6 +95,9 @@ export default function Home() {
               error={errors.month?.message}
               {...register("month", {
                 setValueAs: (value) => value.padStart(2, "0"),
+                onChange: () => {
+                  trigger("day");
+                },
                 required: "Month is required",
                 min: { value: 1, message: "Must be valid month" },
                 max: { value: 12, message: "Must be valid month" },
@@ -103,6 +108,9 @@ export default function Home() {
               error={errors.year?.message}
               {...register("year", {
                 setValueAs: (value) => value.padStart(4, "0"),
+                onChange: () => {
+                  trigger("day");
+                },
                 required: "Year is required",
                 min: { value: 100, message: "Year must be 100 or greater" },
                 max: {
